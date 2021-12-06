@@ -1,0 +1,27 @@
+body {
+    font-family: 'PT Sans', sans-serif;
+}
+
+header h1 {
+    color: #FFF;
+    text-align: center;
+}
+
+main {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: flex-start;
+}
+
+label {
+    display: none;
+}
+
+#forecast-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: flex-start;
+}
