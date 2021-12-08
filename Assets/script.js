@@ -11,12 +11,13 @@ var currentUV = document.querySelector('#current-uv');
 
 var apiKey = 'cbde0d8d9d4e39b8534085ba8c5c2490';
 
-var latitude = "";
-var longitude = "";
+var searchedCity = "Seattle";
 
 // API request to fetch for geo data, i.e. latitude & longitude
 function getLatLon() {
-    var urlLatLon = 'http://api.openweathermap.org/geo/1.0/direct?q=Seattle&limit=5&appid=' + apiKey;
+    var urlLatLon = `http://api.openweathermap.org/geo/1.0/direct?q=${searchedCity}&limit=5&appid=${apiKey}`;
+    var latitude;
+    var longitude;
 
     fetch(urlLatLon)
         .then(function (response) {
@@ -27,17 +28,21 @@ function getLatLon() {
             console.log(data);
             latitude = data[0].lat;
             longitude = data[0].lon;
-            console.log("latitude is " + latitude);
-            console.log("longitude is " + longitude);
+            // console.log("latitude is " + latitude);
+            // console.log("longitude is " + longitude);
+            getWeather(latitude, longitude);
         })
-        getWeather();
 }
 
 getLatLon();
 
 // API request to bring latitude & longitude into fetch for weather
-function getWeather() {
-    var urlWeather = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&appid=' + apiKey;
+function getWeather(latitude, longitude) {
+    
+    // console.log("Within getWeather function latitude is " + latitude);
+    // console.log("Within getWeather function longitude is " + longitude);
+
+    var urlWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
 
     fetch(urlWeather)
         .then(function (response) {
@@ -46,8 +51,8 @@ function getWeather() {
         .then(function (data) {
             console.log("data from getWeather is:");
             console.log(data);
+            // displayWeather();
         })
-    // displayWeather();
 }
 
 // Render fetched weather data to page
