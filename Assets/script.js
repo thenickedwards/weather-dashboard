@@ -4,10 +4,26 @@ console.log("Hello World!");
 
 // Variables for current weather elements
 var currentCity = document.querySelector('#current-city');
+var today = moment().format('l');
 var currentTemp = document.querySelector('#current-temp');
 var currentWind = document.querySelector('#current-wind');
 var currentHumid = document.querySelector('#current-humid');
 var currentUV = document.querySelector('#current-uv');
+
+
+// Variables and template literal for forecast cards
+var forecast = $('#forecast-cards')
+
+var forecastCard = `
+<div id="" class="card" style="width: 11rem;">
+    <div id="fore-date" class="card-header">12/25/21</div>
+    <ul class="list-group list-group-flush">
+        <li id="fore-symbol" class="list-group-item">SYMBOL</li>
+        <li id="fore-temp" class="list-group-item">Temp: </li>
+        <li id="fore-wind" class="list-group-item">Wind: </li>
+        <li id="fore-humid" class="list-group-item">Humidity: </li>
+    </ul>
+</div>`
 
 var apiKey = 'cbde0d8d9d4e39b8534085ba8c5c2490';
 
@@ -42,7 +58,7 @@ function getWeather(latitude, longitude) {
     // console.log("Within getWeather function latitude is " + latitude);
     // console.log("Within getWeather function longitude is " + longitude);
 
-    var urlWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
+    var urlWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=imperial&appid=${apiKey}`;
 
     fetch(urlWeather)
         .then(function (response) {
@@ -51,15 +67,37 @@ function getWeather(latitude, longitude) {
         .then(function (data) {
             console.log("data from getWeather is:");
             console.log(data);
-            // displayWeather();
+
+            temperature = data.current.temp
+            wind = data.current.wind_speed
+            humidity = data.current.humidity
+            uvIndex = data.current.uvi
+            dailyForecast = data.daily
+
+            console.log(`Current weather is temp: ${temperature}, wind: ${wind}, humidity: ${humidity}, UV index: ${uvIndex}`)
+
+            displayWeather(temperature, wind, humidity, uvIndex, dailyForecast);
         })
 }
 
 // Render fetched weather data to page
-// function displayWeather() {
-//     console.log("This console log is from the displayWeather function");
-//     console.log(data);
-// }
+function displayWeather(temperature, wind, humidity, uvIndex, dailyForecast) {
+    console.log("This console log is from the displayWeather function");
+    console.log(`Current weather is temp: ${temperature}, wind: ${wind}, humidity: ${humidity}, UV index: ${uvIndex}`);
+    // Render current weather
+    currentCity.textContent = `${searchedCity} (${today})`;
+    currentTemp.textContent = `Temp: ${temperature}° F`;
+    currentWind.textContent = `Wind: ${wind} MPH`;
+    currentHumid.textContent = `Humidity: ${humidity}%`;
+    currentUV.textContent = `UV Index: ${uvIndex}`;
+    
+    // Render forecast
+    for (i = 0; i < 5; i++) {
+        $('#forecast-cards').append(forecastCard);
+        document.querySelector('.card-header').textContent = moment().add(i+1, 'd').format('l');
+        
+    }
+}
 
 
 

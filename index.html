@@ -8,12 +8,12 @@
     <!-- Style sheets -->
     <link rel="stylesheet" href="./Assets/reset.css" />
 
-    <!-- Fonts -->
+    <!-- Styling fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap" rel="stylesheet">
     
-    <!-- Frameworks -->
+    <!-- Styling frameworks -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     
     <link rel="stylesheet" href="./Assets/style.css" />
@@ -39,11 +39,11 @@
     <!-- Current weather -->
     <section id="current-display" class="container col-9">
       <div id="current-weather" class="border">
-        <h2 id="current-city" class="m-2">Seattle</h2>
-        <p id="current-temp" class="ms-4">Temp: </p>
-        <p id="current-wind" class="ms-4">Wind: </p>
-        <p id="current-humid" class="ms-4">Humidity: </p>
-        <p id="current-uv" class="ms-4">UV Index: </p>
+        <h2 id="current-city" class="m-2"></h2>
+        <p id="current-temp" class="ms-4"></p>
+        <p id="current-wind" class="ms-4"></p>
+        <p id="current-humid" class="ms-4"></p>
+        <p id="current-uv" class="ms-4"></p>
       </div>
 
       <!-- 5 day forecast -->
@@ -52,7 +52,7 @@
         
         <div id="forecast-cards">
 
-          <div id="1" class="card" style="width: 11rem;">
+          <!-- <div id="1" class="card" style="width: 11rem;">
             <div id="date" class="card-header">12/25/21</div>
             <ul class="list-group list-group-flush">
               <li id="weather-symbol" class="list-group-item">SYMBOL</li>
@@ -100,7 +100,7 @@
               <li class="list-group-item">Wind: </li>
               <li class="list-group-item">Humidity: </li>
             </ul>
-          </div>
+          </div> -->
 
         </div>
 
@@ -114,10 +114,11 @@
 
     
 
-<!-- JS & jQuery -->
+<!-- JS, jQuery, Moment -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <!-- My JS -->
   <script src="./Assets/script.js"></script>
 </body>
