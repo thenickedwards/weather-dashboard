@@ -16,12 +16,12 @@ var forecast = $('#forecast-cards')
 
 var forecastCard = `
 <div id="" class="card" style="width: 11rem;">
-    <div id="fore-date" class="card-header">12/25/21</div>
+    <div id="" class="card-header fore-date"></div>
     <ul class="list-group list-group-flush">
-        <li id="fore-symbol" class="list-group-item">SYMBOL</li>
-        <li id="fore-temp" class="list-group-item">Temp: </li>
-        <li id="fore-wind" class="list-group-item">Wind: </li>
-        <li id="fore-humid" class="list-group-item">Humidity: </li>
+        <li id="" class="list-group-item fore-symbol">SYMBOL</li>
+        <li id="" class="list-group-item fore-temp">Temp: </li>
+        <li id="" class="list-group-item fore-wind">Wind: </li>
+        <li id="" class="list-group-item fore-humid">Humidity: </li>
     </ul>
 </div>`
 
@@ -93,9 +93,15 @@ function displayWeather(temperature, wind, humidity, uvIndex, dailyForecast) {
     
     // Render forecast
     for (i = 0; i < 5; i++) {
-        $('#forecast-cards').append(forecastCard);
-        document.querySelector('.card-header').textContent = moment().add(i+1, 'd').format('l');
-        
+        var forecastCardEl = document.createElement("div");
+        forecastCardEl.innerHTML = forecastCard;
+        document.querySelector('#forecast-cards').appendChild(forecastCardEl);
+        document.querySelector('.fore-date').textContent = moment().add(i+1, 'd').format('l');
+        // console.log("i is " + i)
+        // SYMBOL ELEMENT ITERATION
+        document.querySelector('.fore-temp').textContent = `Temp: ${dailyForecast[i].temp.day}° F`;
+        document.querySelector('.fore-wind').textContent = `Wind: ${dailyForecast[i].wind_speed} MPH`;
+        document.querySelector('.fore-humid').textContent = `Humidity: ${dailyForecast[i].humidity}%`;
     }
 }
 
