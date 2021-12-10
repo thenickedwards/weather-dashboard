@@ -29,7 +29,7 @@ var forecastCard = `
 var apiKey = 'cbde0d8d9d4e39b8534085ba8c5c2490';
 var weatherIconUrl = `http://openweathermap.org/img/wn/`
 
-var citySearchForm = document.querySelector('searchform')
+var citySearchForm = document.querySelector('#searchform')
 var searchedCity = "Seattle";
 
 // API request to fetch for geo data, i.e. latitude & longitude
