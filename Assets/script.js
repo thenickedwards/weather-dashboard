@@ -11,7 +11,6 @@ var currentWind = document.querySelector('#current-wind');
 var currentHumid = document.querySelector('#current-humid');
 var currentUV = document.querySelector('#current-uv');
 
-
 // Variables and template literal for forecast cards
 var forecast = $('#forecast-cards')
 
@@ -49,6 +48,7 @@ function getLatLon() {
             longitude = data[0].lon;
             // console.log("latitude is " + latitude);
             // console.log("longitude is " + longitude);
+            searchedCity = data[0].name;
             getWeather(latitude, longitude);
         })
 }
@@ -97,6 +97,7 @@ function displayWeather(temperature, wind, humidity, uvIndex, weatherIcon, daily
     currentUV.textContent = `UV Index: ${uvIndex}`;
     
     // Render forecast
+    forecast.innerHTML = "";
     for (i = 0; i < 5; i++) {
         var forecastCardEl = document.createElement("div");
         forecastCardEl.innerHTML = forecastCard;
@@ -117,7 +118,7 @@ function displayWeather(temperature, wind, humidity, uvIndex, weatherIcon, daily
 
 citySearchForm.addEventListener('submit', function(event) {
     event.preventDefault();
-    searchedCity = document.getElementById('#city-searchbar').value;
+    searchedCity = document.getElementById('city-searchbar').value;
     console.log("searchedCity from button click is " + searchedCity);
     getLatLon(searchedCity);
 }
