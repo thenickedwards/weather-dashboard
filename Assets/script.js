@@ -96,12 +96,11 @@ function displayWeather(temperature, wind, humidity, uvIndex, dailyForecast) {
         var forecastCardEl = document.createElement("div");
         forecastCardEl.innerHTML = forecastCard;
         document.querySelector('#forecast-cards').appendChild(forecastCardEl);
-        document.querySelector('.fore-date').textContent = moment().add(i+1, 'd').format('l');
-        // console.log("i is " + i)
+        document.querySelectorAll('.fore-date')[i].textContent = moment().add(i, 'd').format('l');
         // SYMBOL ELEMENT ITERATION
-        document.querySelector('.fore-temp').textContent = `Temp: ${dailyForecast[i].temp.day}° F`;
-        document.querySelector('.fore-wind').textContent = `Wind: ${dailyForecast[i].wind_speed} MPH`;
-        document.querySelector('.fore-humid').textContent = `Humidity: ${dailyForecast[i].humidity}%`;
+        document.querySelectorAll('.fore-temp')[i].textContent = `Temp: ${dailyForecast[i].temp.day}° F`;
+        document.querySelectorAll('.fore-wind')[i].textContent = `Wind: ${dailyForecast[i].wind_speed} MPH`;
+        document.querySelectorAll('.fore-humid')[i].textContent = `Humidity: ${dailyForecast[i].humidity}%`;
     }
 }
 
