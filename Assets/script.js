@@ -5,6 +5,7 @@ console.log("Hello World!");
 // Variables for current weather elements
 var currentCity = document.querySelector('#current-city');
 var today = moment().format('l');
+var currentIcon = document.querySelector('#current-icon');
 var currentTemp = document.querySelector('#current-temp');
 var currentWind = document.querySelector('#current-wind');
 var currentHumid = document.querySelector('#current-humid');
@@ -16,9 +17,9 @@ var forecast = $('#forecast-cards')
 
 var forecastCard = `
 <div id="" class="card" style="width: 11rem;">
-    <div id="" class="card-header fore-date"></div>
+    <div id="" class="card-header fore-date">12/25/2021</div>
     <ul class="list-group list-group-flush">
-        <li id="" class="list-group-item fore-symbol">SYMBOL</li>
+        <li id="" class="list-group-item"><img id="" class="fore-symbol" src="" alt=""></li>
         <li id="" class="list-group-item fore-temp">Temp: </li>
         <li id="" class="list-group-item fore-wind">Wind: </li>
         <li id="" class="list-group-item fore-humid">Humidity: </li>
@@ -26,7 +27,9 @@ var forecastCard = `
 </div>`
 
 var apiKey = 'cbde0d8d9d4e39b8534085ba8c5c2490';
+var weatherIconUrl = `http://openweathermap.org/img/wn/`
 
+var citySearchForm= document.querySelector('#searchform')
 var searchedCity = "Seattle";
 
 // API request to fetch for geo data, i.e. latitude & longitude
@@ -73,19 +76,21 @@ function getWeather(latitude, longitude) {
             humidity = data.current.humidity
             uvIndex = data.current.uvi
             dailyForecast = data.daily
+            weatherIcon = data.current.weather[0].icon
 
             console.log(`Current weather is temp: ${temperature}, wind: ${wind}, humidity: ${humidity}, UV index: ${uvIndex}`)
 
-            displayWeather(temperature, wind, humidity, uvIndex, dailyForecast);
+            displayWeather(temperature, wind, humidity, uvIndex, weatherIcon, dailyForecast);
         })
 }
 
 // Render fetched weather data to page
-function displayWeather(temperature, wind, humidity, uvIndex, dailyForecast) {
+function displayWeather(temperature, wind, humidity, uvIndex, weatherIcon, dailyForecast) {
     console.log("This console log is from the displayWeather function");
     console.log(`Current weather is temp: ${temperature}, wind: ${wind}, humidity: ${humidity}, UV index: ${uvIndex}`);
     // Render current weather
     currentCity.textContent = `${searchedCity} (${today})`;
+    currentIcon.setAttribute('src', weatherIconUrl + weatherIcon + '@2x.png')
     currentTemp.textContent = `Temp: ${temperature}° F`;
     currentWind.textContent = `Wind: ${wind} MPH`;
     currentHumid.textContent = `Humidity: ${humidity}%`;
@@ -96,14 +101,28 @@ function displayWeather(temperature, wind, humidity, uvIndex, dailyForecast) {
         var forecastCardEl = document.createElement("div");
         forecastCardEl.innerHTML = forecastCard;
         document.querySelector('#forecast-cards').appendChild(forecastCardEl);
-        document.querySelectorAll('.fore-date')[i].textContent = moment().add(i, 'd').format('l');
-        // SYMBOL ELEMENT ITERATION
+        document.querySelectorAll('.fore-date')[i].textContent = moment().add(i+1, 'd').format('l');
+        document.querySelectorAll('.fore-symbol')[i].setAttribute('src', `${weatherIconUrl}${dailyForecast[i].weather[0].icon}.png`);
         document.querySelectorAll('.fore-temp')[i].textContent = `Temp: ${dailyForecast[i].temp.day}° F`;
         document.querySelectorAll('.fore-wind')[i].textContent = `Wind: ${dailyForecast[i].wind_speed} MPH`;
         document.querySelectorAll('.fore-humid')[i].textContent = `Humidity: ${dailyForecast[i].humidity}%`;
     }
 }
 
+// User searches city
+// add eventlistenr to button, grab valuye, set searchedCity value
+// Creates/appends button
+// Adds value to local storage array
+// value from button passes to getWeather function
+
+citySearchForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    searchedCity = citySearchBar.value;
+    console.log("searchedCity from button click is " + searchedCity);
+    getLatLon(searchedCity);
+}
+
+);
 
 
 // city is Seattle

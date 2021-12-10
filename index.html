@@ -31,15 +31,21 @@
     <section id="searchform" class="col-2">
       <div class="mb-3">
         <h2>Search for a City</h2>
-        <label for="city-searchbar" class="form-label"></label>
-        <input type="email" class="form-control" id="city-searchbar" placeholder="e.g. Seattle or Seattle, USA">
+        <form action="">
+          <label for="city-searchbar" class="form-label"></label>
+          <input id="city-searchbar" type="text" class="form-control mb-3" placeholder="e.g. Seattle or Seattle, USA">
+          <button id="city-searchbutton" type="submit" class="btn btn-primary col-12">Search</button>
+        </form>
       </div>
     </section>
 
     <!-- Current weather -->
     <section id="current-display" class="container col-9">
       <div id="current-weather" class="border">
-        <h2 id="current-city" class="m-2"></h2>
+        <div id="cityandicon">
+          <h2 id="current-city" class="m-2"></h2>
+          <img id="current-icon" src="" alt="">
+        </div>
         <p id="current-temp" class="ms-4"></p>
         <p id="current-wind" class="ms-4"></p>
         <p id="current-humid" class="ms-4"></p>
@@ -51,62 +57,11 @@
         <h3>5-Day Forecast</h3>
         
         <div id="forecast-cards">
-
-          <!-- <div id="1" class="card" style="width: 11rem;">
-            <div id="date" class="card-header">12/25/21</div>
-            <ul class="list-group list-group-flush">
-              <li id="weather-symbol" class="list-group-item">SYMBOL</li>
-              <li class="list-group-item">Temp: </li>
-              <li class="list-group-item">Wind: </li>
-              <li class="list-group-item">Humidity: </li>
-            </ul>
-          </div>
-
-          <div id="2" class="card" style="width: 11rem;">
-            <div id="date" class="card-header">12/26/21</div>
-            <ul class="list-group list-group-flush">
-              <li id="weather-symbol" class="list-group-item">SYMBOL</li>
-              <li class="list-group-item">Temp: </li>
-              <li class="list-group-item">Wind: </li>
-              <li class="list-group-item">Humidity: </li>
-            </ul>
-          </div>
-
-          <div id="3" class="card" style="width: 11rem;">
-            <div id="date" class="card-header">12/27/21</div>
-            <ul class="list-group list-group-flush">
-              <li id="weather-symbol" class="list-group-item">SYMBOL</li>
-              <li class="list-group-item">Temp: </li>
-              <li class="list-group-item">Wind: </li>
-              <li class="list-group-item">Humidity: </li>
-            </ul>
-          </div>
-
-          <div id="4" class="card" style="width: 11rem;">
-            <div id="date" class="card-header">12/28/21</div>
-            <ul class="list-group list-group-flush">
-              <li id="weather-symbol" class="list-group-item">SYMBOL</li>
-              <li class="list-group-item">Temp: </li>
-              <li class="list-group-item">Wind: </li>
-              <li class="list-group-item">Humidity: </li>
-            </ul>
-          </div>
-
-          <div id="5" class="card" style="width: 11rem;">
-            <div id="date" class="card-header">12/29/21</div>
-            <ul class="list-group list-group-flush">
-              <li id="weather-symbol" class="list-group-item">SYMBOL</li>
-              <li class="list-group-item">Temp: </li>
-              <li class="list-group-item">Wind: </li>
-              <li class="list-group-item">Humidity: </li>
-            </ul>
-          </div> -->
-
+          <!-- Forecast cards dynamically created with JS -->
         </div>
 
       </section>
 
-      </div>
 
     </section>
   </main>

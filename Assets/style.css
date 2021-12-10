@@ -25,3 +25,9 @@ label {
     justify-content: space-between;
     align-content: flex-start;
 }
+
+#cityandicon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
