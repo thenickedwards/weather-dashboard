@@ -117,7 +117,7 @@ function displayWeather(temperature, wind, humidity, uvIndex, weatherIcon, daily
 
 citySearchForm.addEventListener('submit', function(event) {
     event.preventDefault();
-    searchedCity = citySearchBar.value;
+    searchedCity = document.getElementById('#city-searchbar').value;
     console.log("searchedCity from button click is " + searchedCity);
     getLatLon(searchedCity);
 }
