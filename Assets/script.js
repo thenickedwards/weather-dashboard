@@ -2,6 +2,9 @@
 // GET LAT & LON http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 console.log("Hello World!");
 
+cityArray = [];
+var pastCities = JSON.parse(localStorage.getItem('cities'));
+
 // Variables for current weather elements
 var currentCity = document.querySelector('#current-city');
 var today = moment().format('l');
@@ -30,6 +33,10 @@ var weatherIconUrl = `http://openweathermap.org/img/wn/`
 
 var citySearchForm = document.querySelector('#searchform')
 var searchedCity = "Seattle";
+
+// Display previously searched cities from local storage
+var prevCity = `<button type="button" class="btn btn-secondary m-5 col-12"></button>`;
+
 
 // API request to fetch for geo data, i.e. latitude & longitude
 function getLatLon() {
@@ -98,7 +105,7 @@ function displayWeather(temperature, wind, humidity, uvIndex, weatherIcon, daily
     
     // Render forecast
     for (i = 0; i < 5; i++) {
-        var forecastCardEl = document.createElement("div");
+        var forecastCardEl = document.createElement('div');
         forecastCardEl.innerHTML = forecastCard;
         document.querySelector('#forecast-cards').appendChild(forecastCardEl);
         document.querySelectorAll('.fore-date')[i].textContent = moment().add(i+1, 'd').format('l');
@@ -115,17 +122,42 @@ function displayWeather(temperature, wind, humidity, uvIndex, weatherIcon, daily
 // Adds value to local storage array
 // value from button passes to getWeather function
 
+// Search clears forecast cards before populating next set
 citySearchForm.addEventListener('submit', function(event) {
     event.preventDefault();
     forecast = document.getElementById('forecast-cards');
     forecast.innerHTML = "";
+
     searchedCity = document.getElementById('city-searchbar').value;
-    console.log("searchedCity from button click is " + searchedCity);
+
+    cityArray.push(searchedCity);
+    
+    localStorage.setItem('cities', JSON.stringify(cityArray));
+    console.log("cityArray is " + cityArray);
+    
+    var prevCityEl = document.createElement('button');
+    prevCityEl.innerHTML = prevCity;
+    prevCityEl.textContent = searchedCity;
+
+    document.querySelector('#search-history').appendChild(prevCityEl);
+
     getLatLon(searchedCity);
 }
 
 );
 
+// function displaySearchHistory() {
+//     if (cityArray !== '') {
+//         for (i = 0; i < cityArray.length; i++)
+//         var prevCityEl = document.createElement('button');
+//         prevCityEl.innerHTML = prevCity;
+//         document.querySelector('#search-history').appendChild(prevCityEl);
+//     } else {
+//         return
+//     }
+// }
+
+// displaySearchHistory();
 
 // city is Seattle
 // latitude is 47.6062
