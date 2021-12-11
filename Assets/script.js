@@ -97,7 +97,6 @@ function displayWeather(temperature, wind, humidity, uvIndex, weatherIcon, daily
     currentUV.textContent = `UV Index: ${uvIndex}`;
     
     // Render forecast
-    forecast.innerHTML = "";
     for (i = 0; i < 5; i++) {
         var forecastCardEl = document.createElement("div");
         forecastCardEl.innerHTML = forecastCard;
@@ -118,6 +117,8 @@ function displayWeather(temperature, wind, humidity, uvIndex, weatherIcon, daily
 
 citySearchForm.addEventListener('submit', function(event) {
     event.preventDefault();
+    forecast = document.getElementById('forecast-cards');
+    forecast.innerHTML = "";
     searchedCity = document.getElementById('city-searchbar').value;
     console.log("searchedCity from button click is " + searchedCity);
     getLatLon(searchedCity);
