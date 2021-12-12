@@ -141,6 +141,7 @@ citySearchForm.addEventListener('submit', function(event) {
     prevCityEl.innerHTML = prevCity;
     prevCityEl.textContent = searchedCity;
     // prevCityEl.setAttribute("value", searchedCity)
+    prevCityEl.addEventListener ('click', searchFromHistory);
 
     document.querySelector('#search-history').appendChild(prevCityEl);
 
@@ -149,15 +150,15 @@ citySearchForm.addEventListener('submit', function(event) {
 });
 
 
-// TODO: value from button passes to getWeather function
-searchHistory.addEventListener('submit', function(event) {
+// When buttons in search history are clicked, value from button passes to getWeather function
+function searchFromHistory(event) {
     event.preventDefault();
-    console.log("Button clicked!");
-
-    searchedCity = event.target;
-    console.log(searchedCity + " button clicked!");
+    searchedCity = event.target.textContent;
+    console.log("Button clicked for " + searchedCity)
     getLatLon(searchedCity);
-});
+};
+
+
 
 
 
