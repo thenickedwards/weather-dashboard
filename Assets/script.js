@@ -120,27 +120,19 @@ function displayWeather(temperature, wind, humidity, uvIndex, weatherIcon, daily
 // add eventlistenr to button, grab valuye, set searchedCity value
 // Creates/appends button
 // Adds value to local storage array
-TODO:
-// value from button passes to getWeather function
 
-// Search clears forecast cards before populating next set
+
+// Search verfies input not blank, clears forecast cards before populating next set
 citySearchForm.addEventListener('submit', function(event) {
     event.preventDefault();
 
     searchedCity = document.getElementById('city-searchbar').value.trim();
-
     if (searchedCity.length == 0) {return}
     else {
-    
-    
-
     forecast = document.getElementById('forecast-cards');
     forecast.innerHTML = "";
 
-
-
-    cityArray.push(searchedCity);
-    
+    cityArray.push(searchedCity);    
     localStorage.setItem('cities', JSON.stringify(cityArray));
     console.log("cityArray is " + cityArray);
     
@@ -152,10 +144,10 @@ citySearchForm.addEventListener('submit', function(event) {
 
     getLatLon(searchedCity);
     }
-}
+});
 
-);
 
+// TODO: value from button passes to getWeather function
 
 // function displaySearchHistory() {
 //     var pastCities = JSON.parse(localStorage.getItem('cities'));
