@@ -156,8 +156,9 @@ function searchFromHistory(event) {
 // Display search history from local storage
 function displaySearchHistory() {
     var pastCities = JSON.parse(localStorage.getItem('cities'));
-    if (pastCities.length == 0 || pastCities.length == null) {return}
-    else {
+    // if (pastCities.length == 0 || pastCities.length == null) {return}
+    // else {
+    if (pastCities) {
         console.log("pastCities include " + pastCities);
         console.log(pastCities);
         for (i = 0; i < pastCities.length; i++) {
