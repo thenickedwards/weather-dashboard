@@ -94,8 +94,6 @@ function getWeather(latitude, longitude) {
 
 // Render fetched weather data to page
 function displayWeather(temperature, wind, humidity, uvIndex, weatherIcon, dailyForecast) {
-    console.log("This console log is from the displayWeather function");
-    console.log(`Current weather is temp: ${temperature}, wind: ${wind}, humidity: ${humidity}, UV index: ${uvIndex}`);
     // Render current weather
     currentCity.textContent = `${searchedCity} (${today})`;
     currentIcon.setAttribute('src', weatherIconUrl + weatherIcon + '@2x.png')
@@ -155,21 +153,24 @@ function searchFromHistory(event) {
 
 
 
-// TODO: display searhc history
-// function displaySearchHistory() {
-//     var pastCities = JSON.parse(localStorage.getItem('cities'));
-//     if (pastCities !== '') {
-//         for (i = 0; i < pastCities.length; i++)
-//         var prevCityEl = document.createElement('button');
-//         prevCityEl.innerHTML = prevCity;
-//         document.querySelector('#search-history').appendChild(prevCityEl);
-//     } else {
-//         return
-//     }
-// }
+// Display search history from local storage
+function displaySearchHistory() {
+    var pastCities = JSON.parse(localStorage.getItem('cities'));
+    console.log("pastCities is " + pastCities);
+    console.log(pastCities);
 
-// displaySearchHistory();
+    if (pastCities.length == 0) {return}
+    else {
+        for (i = 0; i < pastCities.length; i++) {
+            var prevCityEl = document.createElement('button');
+        prevCityEl.innerHTML = prevCity;
+        prevCityEl.textContent = pastCities[i];
+        prevCityEl.addEventListener ('click', searchFromHistory);
 
-// city is Seattle
-// latitude is 47.6062
-// longitude is -122.3321
+        document.querySelector('#search-history').appendChild(prevCityEl);
+        }
+    }
+};
+
+displaySearchHistory();
+
