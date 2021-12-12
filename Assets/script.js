@@ -1,5 +1,6 @@
+chrome_options.add_argument('--log-level=1')
 // GET WEATHER https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
-// GET LAT & LON https://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
+// GET LAT & LON http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 // Seattle used as example for user
 // Console logs may be toggled on/off for more info!
 
@@ -13,7 +14,7 @@ var pastCities = JSON.parse(localStorage.getItem('cities'));
 var currentCity = document.querySelector('#current-city');
 var today = moment().format('l');
 var currentIcon = document.querySelector('#current-icon');
-var weatherIconUrl = `https://openweathermap.org/img/wn/`
+var weatherIconUrl = `http://openweathermap.org/img/wn/`
 var currentTemp = document.querySelector('#current-temp');
 var currentWind = document.querySelector('#current-wind');
 var currentHumid = document.querySelector('#current-humid');
@@ -47,7 +48,7 @@ var searchedCity = "Seattle";
 
 // API request to fetch for geo data, i.e. latitude & longitude
 function getLatLon() {
-    var urlLatLon = `https://api.openweathermap.org/geo/1.0/direct?q=${searchedCity}&limit=5&appid=${apiKey}`;
+    var urlLatLon = `http://api.openweathermap.org/geo/1.0/direct?q=${searchedCity}&limit=5&appid=${apiKey}`;
     var latitude;
     var longitude;
 
