@@ -33,6 +33,7 @@ var weatherIconUrl = `http://openweathermap.org/img/wn/`
 
 var citySearchForm = document.querySelector('#searchform')
 var searchedCity = "Seattle";
+var searchHistory = document.querySelector('#search-history')
 
 // Display previously searched cities from local storage
 var prevCity = `<button type="button" class="btn btn-secondary m-5 col-12"></button>`;
@@ -139,6 +140,7 @@ citySearchForm.addEventListener('submit', function(event) {
     var prevCityEl = document.createElement('button');
     prevCityEl.innerHTML = prevCity;
     prevCityEl.textContent = searchedCity;
+    // prevCityEl.setAttribute("value", searchedCity)
 
     document.querySelector('#search-history').appendChild(prevCityEl);
 
@@ -148,7 +150,19 @@ citySearchForm.addEventListener('submit', function(event) {
 
 
 // TODO: value from button passes to getWeather function
+searchHistory.addEventListener('submit', function(event) {
+    event.preventDefault();
+    console.log("Button clicked!");
 
+    searchedCity = event.target;
+    console.log(searchedCity + " button clicked!");
+    getLatLon(searchedCity);
+});
+
+
+
+
+// TODO: display searhc history
 // function displaySearchHistory() {
 //     var pastCities = JSON.parse(localStorage.getItem('cities'));
 //     if (pastCities !== '') {
