@@ -1,7 +1,11 @@
 // GET WEATHER https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
 // GET LAT & LON http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
+// Seattle used as example for user
+// Console logs may be toggled on/off for more info!
+
 console.log("Hello World!");
 
+// For local storage
 cityArray = [];
 var pastCities = JSON.parse(localStorage.getItem('cities'));
 
@@ -9,6 +13,7 @@ var pastCities = JSON.parse(localStorage.getItem('cities'));
 var currentCity = document.querySelector('#current-city');
 var today = moment().format('l');
 var currentIcon = document.querySelector('#current-icon');
+var weatherIconUrl = `http://openweathermap.org/img/wn/`
 var currentTemp = document.querySelector('#current-temp');
 var currentWind = document.querySelector('#current-wind');
 var currentHumid = document.querySelector('#current-humid');
@@ -28,15 +33,16 @@ var forecastCard = `
     </ul>
 </div>`
 
-var apiKey = 'cbde0d8d9d4e39b8534085ba8c5c2490';
-var weatherIconUrl = `http://openweathermap.org/img/wn/`
-
+// Variables for search elements 
 var citySearchForm = document.querySelector('#searchform')
-var searchedCity = "Seattle";
 var searchHistory = document.querySelector('#search-history')
 
-// Display previously searched cities from local storage
+// Template literal for display previously searched cities from local storage
 var prevCity = `<button type="button" class="btn btn-secondary m-5 col-12"></button>`;
+
+// Example city & API key for fetch requests
+var apiKey = 'cbde0d8d9d4e39b8534085ba8c5c2490';
+var searchedCity = "Seattle";
 
 
 // API request to fetch for geo data, i.e. latitude & longitude
@@ -65,7 +71,6 @@ getLatLon();
 
 // API request to bring latitude & longitude into fetch for weather
 function getWeather(latitude, longitude) {
-    
     // console.log("Within getWeather function latitude is " + latitude);
     // console.log("Within getWeather function longitude is " + longitude);
 
@@ -148,19 +153,13 @@ function searchFromHistory(event) {
     getLatLon(searchedCity);
 };
 
-
-
-
-
-
 // Display search history from local storage
 function displaySearchHistory() {
     var pastCities = JSON.parse(localStorage.getItem('cities'));
-    console.log("pastCities is " + pastCities);
-    console.log(pastCities);
-
     if (pastCities.length == 0) {return}
     else {
+        console.log("pastCities include " + pastCities);
+        console.log(pastCities);
         for (i = 0; i < pastCities.length; i++) {
             var prevCityEl = document.createElement('button');
         prevCityEl.innerHTML = prevCity;
