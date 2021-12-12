@@ -117,12 +117,6 @@ function displayWeather(temperature, wind, humidity, uvIndex, weatherIcon, daily
     }
 }
 
-// User searches city
-// add eventlistenr to button, grab valuye, set searchedCity value
-// Creates/appends button
-// Adds value to local storage array
-
-
 // Search verfies input not blank, clears forecast cards before populating next set
 citySearchForm.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -140,7 +134,6 @@ citySearchForm.addEventListener('submit', function(event) {
     var prevCityEl = document.createElement('button');
     prevCityEl.innerHTML = prevCity;
     prevCityEl.textContent = searchedCity;
-    // prevCityEl.setAttribute("value", searchedCity)
     prevCityEl.addEventListener ('click', searchFromHistory);
 
     document.querySelector('#search-history').appendChild(prevCityEl);
@@ -148,7 +141,6 @@ citySearchForm.addEventListener('submit', function(event) {
     getLatLon(searchedCity);
     }
 });
-
 
 // When buttons in search history are clicked, value from button passes to getWeather function
 function searchFromHistory(event) {
