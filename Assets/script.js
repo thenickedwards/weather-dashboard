@@ -125,15 +125,11 @@ TODO:
 
 // Search clears forecast cards before populating next set
 citySearchForm.addEventListener('submit', function(event) {
-    
-    TODO:
-    // IF blank return, ELSE
-    
     event.preventDefault();
 
     searchedCity = document.getElementById('city-searchbar').value.trim();
 
-    if (searchedCity.value.length == 0) {return}
+    if (searchedCity.length == 0) {return}
     else {
     
     
