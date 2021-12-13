@@ -150,6 +150,10 @@ function searchFromHistory(event) {
     event.preventDefault();
     searchedCity = event.target.textContent;
     console.log("Button clicked for " + searchedCity)
+
+    forecast = document.getElementById('forecast-cards');
+    forecast.innerHTML = "";
+
     getLatLon(searchedCity);
 };
 
