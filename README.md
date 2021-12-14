@@ -8,9 +8,7 @@ Weather Dashboard page created per acceptance criteria in [W6-hw_readme.md](W6-h
 * Page has form inputs
 * When user searches city, current and future conditions for that city displayed and city added to search history
 * When viewing current weather conditions city name, date, weather conditions icon, temperature, humidity, wind speed and UV index presented
-* 
-WHEN I view the UV index
-THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
+* When viewed UV index rendered with color that indicates whether the conditions are favorable, moderate, or severe
 * Future weather conditions presented as 5-day forecase with date, wether conditions icon, temperature, wind speed and humidity
 * When a city in search history clicked, user is presented with current and future weather conditions for that city again
 

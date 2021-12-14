@@ -19,6 +19,10 @@ label {
     display: none;
 }
 
+#current-uv {
+    display: table;
+}
+
 #forecast-cards {
     display: flex;
     flex-direction: row;

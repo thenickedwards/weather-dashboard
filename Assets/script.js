@@ -106,6 +106,17 @@ function displayWeather(temperature, wind, humidity, uvIndex, weatherIcon, daily
     currentWind.textContent = `Wind: ${wind} MPH`;
     currentHumid.textContent = `Humidity: ${humidity}%`;
     currentUV.textContent = `UV Index: ${uvIndex}`;
+
+    // Adjust UVI styling
+    if (uvIndex <= 2.99) {
+        currentUV.setAttribute("style", "color: white; background-color:#92BFB1;padding: 5px; border-radius:5px;");
+    } else if (uvIndex <= 5.99) {
+        currentUV.setAttribute("style", "background-color:#F5E960; padding: 3px 5px; border-radius:5px;");
+    } else if (uvIndex <= 7.99) {
+        currentUV.setAttribute("style", "color: white; background-color:#cd6531; padding: 5px; border-radius:5px;");
+    } else {
+        currentUV.setAttribute("style", "color: white; background-color:#D72638; padding: 5px; border-radius:5px;");
+    }
     
     // Render forecast
     for (i = 0; i < 5; i++) {
@@ -150,10 +161,8 @@ function searchFromHistory(event) {
     event.preventDefault();
     searchedCity = event.target.textContent;
     console.log("Button clicked for " + searchedCity)
-
     forecast = document.getElementById('forecast-cards');
     forecast.innerHTML = "";
-
     getLatLon(searchedCity);
 };
 
