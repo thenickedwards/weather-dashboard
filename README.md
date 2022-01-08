@@ -21,3 +21,5 @@ URL for GitHub repo: https://github.com/thenickedwards/weather-dashboard
 ![Screenshot of Nick Edwards' Weather Dashboard webpage.](WD_screenshot-main.png)
 
 ![Screenshot of Nick Edwards' Weather Dashboard webpage with local storage data.](WD_screenshot-localstorage.png)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
