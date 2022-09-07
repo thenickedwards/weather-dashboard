@@ -41,7 +41,7 @@ var searchHistory = document.querySelector('#search-history')
 var prevCity = `<button type="button" class="btn btn-secondary m-5 col-12"></button>`;
 
 // Example city & API key for fetch requests
-var apiKey = 'cbde0d8d9d4e39b8534085ba8c5c2490';
+var apiKey = process.env.API_KEY;
 var searchedCity = "Seattle";
 
 
